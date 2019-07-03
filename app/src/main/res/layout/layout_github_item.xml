@@ -33,15 +33,15 @@
                     app:layout_constraintTop_toTopOf="@+id/title"
                     app:layout_constraintBottom_toTopOf="@+id/description" android:gravity="center"/>
             <TextView
-                    android:layout_width="wrap_content"
+                    android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:id="@+id/fork" tools:text="1387"
                     android:drawableStart="@drawable/ic_call_split_black_24dp"
-                    app:layout_constraintStart_toStartOf="@+id/star"
-                    android:layout_marginTop="8dp" app:layout_constraintTop_toBottomOf="@+id/star"
-                    app:layout_constraintEnd_toEndOf="@+id/star" android:layout_marginBottom="8dp"
-                    app:layout_constraintBottom_toBottomOf="parent" android:textStyle="bold"
-                    android:gravity="center|center_horizontal"/>
+                    app:layout_constraintEnd_toEndOf="@+id/star"
+                    android:textStyle="bold"
+                    android:gravity="center|center_horizontal"
+                    app:layout_constraintTop_toTopOf="@+id/description"
+                    app:layout_constraintBottom_toBottomOf="@+id/description"/>
             <TextView
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
@@ -52,14 +52,30 @@
                     android:textColor="#2196F3" android:textStyle="bold"/>
             <TextView
                     android:layout_width="0dp"
-                    android:layout_height="0dp"
+                    android:layout_height="wrap_content"
                     android:id="@+id/description"
                     app:layout_constraintTop_toBottomOf="@+id/title" app:layout_constraintStart_toStartOf="@+id/title"
                     app:layout_constraintEnd_toStartOf="@+id/fork"
                     android:layout_marginEnd="8dp" android:layout_marginBottom="8dp"
                     app:layout_constraintBottom_toBottomOf="parent"
                     tools:text="Android manifest. However, we also recommend adding an android:hint attribute to give the user an idea of what to enter into the search box:"
-                    android:lines="2"/>
+                    android:lines="2" app:layout_constraintHorizontal_bias="0.0"
+                    app:layout_constraintVertical_bias="0.0"/>
+            <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:id="@+id/textView" app:layout_constraintStart_toStartOf="parent"
+                    android:text="@string/language" app:layout_constraintTop_toBottomOf="@+id/description"
+                    app:layout_constraintBottom_toBottomOf="parent" app:layout_constraintHorizontal_bias="0.5"
+                    app:layout_constraintEnd_toStartOf="@+id/language" android:layout_marginStart="16dp"/>
+            <TextView
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:id="@+id/language"
+                    app:layout_constraintStart_toEndOf="@+id/textView"
+                    app:layout_constraintEnd_toEndOf="parent" android:layout_marginEnd="16dp" tools:text="Java"
+                    app:layout_constraintHorizontal_bias="0.5" android:layout_marginStart="8dp"
+                    app:layout_constraintBaseline_toBaselineOf="@+id/textView"/>
         </androidx.constraintlayout.widget.ConstraintLayout>
     </com.google.android.material.card.MaterialCardView>
 </androidx.constraintlayout.widget.ConstraintLayout>
