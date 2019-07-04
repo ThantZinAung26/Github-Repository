@@ -3,4 +3,5 @@
     <string name="language">Language : </string>
     <string name="loading">Loading …</string>
     <string name="unknown">Unknown</string>
+    <string name="search">Search</string>
 </resources>

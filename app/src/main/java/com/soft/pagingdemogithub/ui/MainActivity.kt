@@ -1,19 +1,23 @@
-package com.soft.pagingdemogithub
+package com.soft.pagingdemogithub.ui
 
+import android.app.SearchManager
+import android.content.Context
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import android.os.PersistableBundle
 import android.util.Log
+import android.view.KeyEvent
+import android.view.Menu
 import android.view.View
+import android.view.inputmethod.EditorInfo
 import android.widget.Toast
+import androidx.appcompat.widget.SearchView
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProviders
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
+import com.soft.pagingdemogithub.R
 import com.soft.pagingdemogithub.di.Injection
 import com.soft.pagingdemogithub.model.GithubDTO
-import com.soft.pagingdemogithub.ui.GithubAdapter
-import com.soft.pagingdemogithub.ui.SearchGithubViewModel
 import kotlinx.android.synthetic.main.activity_main.*
 
 class MainActivity : AppCompatActivity() {
@@ -45,7 +49,36 @@ class MainActivity : AppCompatActivity() {
     }
 
     private fun initSearch(query: String) {
+        /*search_repo.setText(query)
 
+        search_repo.setOnEditorActionListener { _, actionId, _ ->
+            if (actionId == EditorInfo.IME_ACTION_GO) {
+                updateRepoListFromInput()
+                true
+            } else {
+                false
+            }
+        }
+        search_repo.setOnKeyListener { _, keyCode, event ->
+            if (event.action == KeyEvent.ACTION_DOWN && keyCode == KeyEvent.KEYCODE_ENTER) {
+                updateRepoListFromInput()
+                true
+            } else {
+                false
+            }
+        }*/
+    }
+
+    override fun onCreateOptionsMenu(menu: Menu): Boolean {
+        menuInflater.inflate(R.menu.search_menu, menu)
+
+        val searchManager = getSystemService(Context.SEARCH_SERVICE) as SearchManager
+        (menu.findItem(R.id.search).actionView as SearchView).apply {
+            setSearchableInfo(searchManager.getSearchableInfo(componentName))
+        }
+
+
+        return true
     }
 
     private fun initAdapter() {
