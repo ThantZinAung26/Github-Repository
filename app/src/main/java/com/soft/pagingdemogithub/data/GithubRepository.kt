@@ -29,7 +29,6 @@ class GithubRepository(
         lastRequestPage = 1
         val data = cache.findByName(query)
         return GithubSearchResult(data, networkErrors)
-
     }
 
     fun requestMore(query: String) {

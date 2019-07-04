@@ -13,9 +13,19 @@
             app:layout_constraintTop_toTopOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintBottom_toBottomOf="parent" tools:listitem="@layout/layout_github_item">
+            app:layout_constraintBottom_toBottomOf="parent" tools:listitem="@layout/layout_github_item"
+            tools:visibility="visible">
 
 
     </androidx.recyclerview.widget.RecyclerView>
+    <TextView
+            android:text="No Result"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content" android:id="@+id/emptyList"
+            app:layout_constraintTop_toTopOf="@+id/recyclerView"
+            android:layout_marginBottom="8dp" app:layout_constraintBottom_toBottomOf="@+id/recyclerView"
+            app:layout_constraintStart_toStartOf="@+id/recyclerView"
+            app:layout_constraintEnd_toEndOf="@+id/recyclerView" android:layout_marginEnd="8dp"
+            android:textSize="24sp" android:textStyle="bold" android:visibility="gone"/>
 
 </androidx.constraintlayout.widget.ConstraintLayout>

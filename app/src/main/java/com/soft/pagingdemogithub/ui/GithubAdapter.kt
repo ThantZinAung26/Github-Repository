@@ -6,18 +6,21 @@ import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
 import com.soft.pagingdemogithub.model.GithubDTO
 
-class GithubAdapter: ListAdapter<GithubDTO, RecyclerView.ViewHolder>(GITHUB_COMPARATOR) {
+class GithubAdapter : ListAdapter<GithubDTO, RecyclerView.ViewHolder>(DIFF_UTIL) {
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): RecyclerView.ViewHolder {
-        TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
+        return GithubViewHolder.create(parent)
     }
 
     override fun onBindViewHolder(holder: RecyclerView.ViewHolder, position: Int) {
-        TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
+        val githubItem = getItem(position)
+        if (githubItem != null) {
+            (holder as GithubViewHolder).bind(githubItem)
+        }
     }
 
     companion object {
-        private val GITHUB_COMPARATOR = object : DiffUtil.ItemCallback<GithubDTO>() {
+        private val DIFF_UTIL = object : DiffUtil.ItemCallback<GithubDTO>() {
             override fun areItemsTheSame(oldItem: GithubDTO, newItem: GithubDTO): Boolean {
                 return oldItem.id == newItem.id
             }
@@ -28,7 +31,6 @@ class GithubAdapter: ListAdapter<GithubDTO, RecyclerView.ViewHolder>(GITHUB_COMP
 
         }
     }
-
 
 
 }
