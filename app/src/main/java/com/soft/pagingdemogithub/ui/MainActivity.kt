@@ -1,7 +1,5 @@
 package com.soft.pagingdemogithub.ui
 
-import android.app.SearchManager
-import android.content.Intent
 import android.os.Bundle
 import android.util.Log
 import android.view.Menu
@@ -62,6 +60,7 @@ class MainActivity : AppCompatActivity() {
                 return false
             }
         })
+        searchView.clearFocus()
         return true
     }
 
