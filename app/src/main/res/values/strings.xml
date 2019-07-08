@@ -1,7 +1,8 @@
 <resources>
-    <string name="app_name">PagingDemoGithub</string>
-    <string name="language">Language : </string>
+    <string name="app_name">Github</string>
+    <string name="language">Language : %s</string>
     <string name="loading">Loading …</string>
-    <string name="unknown">Unknown</string>
+    <string name="unknown">\?</string>
     <string name="search">Search</string>
+    <string name="no_result">No Result 😓</string>
 </resources>

@@ -7,11 +7,11 @@ import com.google.gson.annotations.SerializedName
 @Entity(tableName = "github")
 data class GithubDTO(
     @PrimaryKey @field:SerializedName("id") val id: Long,
-    val name: String,
-    val fullName: String,
-    val description: String?,
-    val url: String,
-    val stars: Int,
-    val fork: Int,
-    val language: String?
+    @field:SerializedName("name") val name: String,
+    @field:SerializedName("full_name") val fullName: String,
+    @field:SerializedName("description") val description: String?,
+    @field:SerializedName("html_url") val url: String,
+    @field:SerializedName("stargazers_count") val stars: Int,
+    @field:SerializedName("forks_count") val fork: Int,
+    @field:SerializedName("language") val language: String?
 )

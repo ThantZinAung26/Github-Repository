@@ -11,13 +11,15 @@ class GithubRepo(
     private val ioExecutor: Executor
 ) {
     fun insert(github: List<GithubDTO>, insertFinished: () -> Unit) {
-        Log.d("GithubRepo", "inserting ${github.size} github")
-        githubDAO.insert(github)
-        insertFinished()
+        ioExecutor.execute {
+            Log.d("GithubRepo", "inserting ${github.size} github")
+            githubDAO.insert(github)
+            insertFinished()
+        }
     }
 
     fun findByName(name: String): LiveData<List<GithubDTO>> {
-        val query = "%${name.replace(' ','%')}%"
+        val query = "%${name.replace(' ', '%')}%"
         return githubDAO.findAll(query)
     }
 }

@@ -13,10 +13,6 @@ class GithubRepository(
 
 ) {
 
-    companion object {
-        private const val NETWORK_PAGE_SIZE: Int = 50
-    }
-
     private var lastRequestPage = 1
 
     private val networkErrors = MutableLiveData<String>()
@@ -27,6 +23,7 @@ class GithubRepository(
 
         Log.d("GithubReposotory", "new query: $query")
         lastRequestPage = 1
+        requestAndSaveData(query)
         val data = cache.findByName(query)
         return GithubSearchResult(data, networkErrors)
     }
@@ -38,7 +35,7 @@ class GithubRepository(
     private fun requestAndSaveData(query: String) {
         if (isRequestInProgress) return
         isRequestInProgress = true
-        searchGithub(service, lastRequestPage, query, NETWORK_PAGE_SIZE, { gitubs ->
+        searchGithub(service, query, lastRequestPage, NETWORK_PAGE_SIZE, { gitubs ->
             cache.insert(gitubs) {
                 lastRequestPage++
                 isRequestInProgress = false
@@ -48,6 +45,11 @@ class GithubRepository(
             isRequestInProgress = false
 
         })
+    }
+
+
+    companion object {
+        private const val NETWORK_PAGE_SIZE: Int = 50
     }
 
 }

@@ -9,6 +9,7 @@ import retrofit2.Callback
 import retrofit2.Response
 import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory
+import retrofit2.http.GET
 import retrofit2.http.Query
 
 private const val TAG = "GithubService"
@@ -16,6 +17,7 @@ private const val IN_QUALIFIER = "in:name,description"
 
 interface GithubService {
 
+    @GET("search/repositories?sort=stars")
     fun githubSearch(
         @Query("q") query: String,
         @Query("page") page: Int,
@@ -47,8 +49,8 @@ interface GithubService {
 
 fun searchGithub(
     service: GithubService,
-    page: Int,
     query: String,
+    page: Int,
     itemsPerPage: Int,
     onSuccess: (github: List<GithubDTO>) -> Unit,
     onError: (error: String) -> Unit

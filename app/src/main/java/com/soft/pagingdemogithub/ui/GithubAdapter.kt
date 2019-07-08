@@ -21,13 +21,13 @@ class GithubAdapter : ListAdapter<GithubDTO, RecyclerView.ViewHolder>(DIFF_UTIL)
 
     companion object {
         private val DIFF_UTIL = object : DiffUtil.ItemCallback<GithubDTO>() {
-            override fun areItemsTheSame(oldItem: GithubDTO, newItem: GithubDTO): Boolean {
-                return oldItem.id == newItem.id
-            }
+            override fun areItemsTheSame(oldItem: GithubDTO, newItem: GithubDTO): Boolean =
+                oldItem.id == newItem.id
 
-            override fun areContentsTheSame(oldItem: GithubDTO, newItem: GithubDTO): Boolean {
-                return oldItem == newItem
-            }
+
+            override fun areContentsTheSame(oldItem: GithubDTO, newItem: GithubDTO): Boolean =
+                oldItem == newItem
+
 
         }
     }

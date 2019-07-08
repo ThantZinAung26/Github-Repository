@@ -18,11 +18,15 @@ abstract class GithubDatabase : RoomDatabase() {
 
         fun getInstance(context: Context): GithubDatabase =
             INSTANCE ?: synchronized(this) {
-                INSTANCE ?: Room.databaseBuilder(
-                    context,
-                    GithubDatabase::class.java, "github.db"
-                ).build()
+                INSTANCE ?: databaseBuild(context).also { INSTANCE = it }
             }
+
+        private fun databaseBuild(context: Context) =
+            Room.databaseBuilder(
+                context.applicationContext,
+                GithubDatabase::class.java, "github.db"
+            ).build()
+
     }
 
 }

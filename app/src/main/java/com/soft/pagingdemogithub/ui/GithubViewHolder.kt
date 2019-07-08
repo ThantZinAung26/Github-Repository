@@ -1,6 +1,7 @@
 package com.soft.pagingdemogithub.ui
 
 import android.content.Intent
+import android.content.res.Resources
 import android.net.Uri
 import android.view.LayoutInflater
 import android.view.View
@@ -21,7 +22,7 @@ class GithubViewHolder(view: View) : RecyclerView.ViewHolder(view) {
     private var githubDTO: GithubDTO? = null
 
     init {
-        view.setOnClickListener{
+        view.setOnClickListener {
             githubDTO?.url?.let { url ->
                 val intent = Intent(Intent.ACTION_VIEW, Uri.parse(url))
                 view.context.startActivity(intent)
@@ -37,15 +38,18 @@ class GithubViewHolder(view: View) : RecyclerView.ViewHolder(view) {
             language.visibility = View.GONE
             stars.text = resource.getString(R.string.unknown)
             fork.text = resource.getString(R.string.unknown)
-        } else showGithubData(githubDTO)
+        } else {
+            showGithubData(githubDTO)
+        }
 
     }
+
     private fun showGithubData(githubDTO: GithubDTO) {
         this.githubDTO = githubDTO
         name.text = githubDTO.fullName
 
         var descriptionVisibility = View.GONE
-        if (description != null) {
+        if (githubDTO.description != null) {
             description.text = githubDTO.description
             descriptionVisibility = View.VISIBLE
         }
@@ -54,8 +58,9 @@ class GithubViewHolder(view: View) : RecyclerView.ViewHolder(view) {
         fork.text = githubDTO.fork.toString()
 
         var languageVisibility = View.GONE
-        if (language != null) {
-            language.text = githubDTO.language
+        if (!githubDTO.language.isNullOrEmpty()) {
+            val resources = this.itemView.resources
+            language.text = resources.getString(R.string.language, githubDTO.language)
             languageVisibility = View.VISIBLE
         }
 

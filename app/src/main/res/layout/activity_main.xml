@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout
+<androidx.coordinatorlayout.widget.CoordinatorLayout
         xmlns:android="http://schemas.android.com/apk/res/android"
         xmlns:app="http://schemas.android.com/apk/res-auto"
         xmlns:tools="http://schemas.android.com/tools"
@@ -8,42 +8,19 @@
         tools:context=".ui.MainActivity">
 
     <com.google.android.material.appbar.AppBarLayout
-            android:layout_width="match_parent"
-            android:layout_height="0dp"
-            android:theme="@style/AppTheme.AppBarOverlay" android:id="@+id/appBarLayout"
-            app:layout_constraintTop_toTopOf="parent" app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent">
+            android:id="@+id/appbar"
+            android:layout_height="wrap_content"
+            android:theme="@style/AppTheme.AppBarOverlay"
+            android:layout_width="match_parent">
 
         <androidx.appcompat.widget.Toolbar
                 android:id="@+id/toolbar"
-                android:layout_width="match_parent"
                 android:layout_height="?attr/actionBarSize"
-                android:background="?attr/colorPrimary"
-                app:popupTheme="@style/AppTheme.PopupOverlay"/>
-
+                android:layout_width="match_parent"
+                app:popupTheme="@style/AppTheme.PopupOverlay">
+        </androidx.appcompat.widget.Toolbar>
     </com.google.android.material.appbar.AppBarLayout>
 
-    <androidx.recyclerview.widget.RecyclerView
-            android:id="@+id/recyclerView"
-            android:layout_width="0dp"
-            android:layout_height="0dp"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            tools:listitem="@layout/layout_github_item"
-            tools:visibility="visible"
-            app:layout_constraintTop_toBottomOf="@+id/appBarLayout"
-            app:layout_constraintBottom_toBottomOf="parent">
+    <include layout="@layout/content_main"/>
 
-
-    </androidx.recyclerview.widget.RecyclerView>
-    <TextView
-            android:text="No Result"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content" android:id="@+id/emptyList"
-            app:layout_constraintTop_toTopOf="@+id/recyclerView"
-            android:layout_marginBottom="8dp" app:layout_constraintBottom_toBottomOf="@+id/recyclerView"
-            app:layout_constraintStart_toStartOf="@+id/recyclerView"
-            app:layout_constraintEnd_toEndOf="@+id/recyclerView" android:layout_marginEnd="8dp"
-            android:textSize="24sp" android:textStyle="bold" android:visibility="gone"/>
-
-</androidx.constraintlayout.widget.ConstraintLayout>
+</androidx.coordinatorlayout.widget.CoordinatorLayout>
