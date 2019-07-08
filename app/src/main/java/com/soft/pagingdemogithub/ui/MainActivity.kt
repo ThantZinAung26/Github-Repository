@@ -1,19 +1,17 @@
 package com.soft.pagingdemogithub.ui
 
+import android.app.SearchManager
 import android.content.Intent
 import android.os.Bundle
 import android.util.Log
-import android.view.KeyEvent
 import android.view.Menu
 import android.view.View
-import android.view.inputmethod.EditorInfo
-import android.widget.EditText
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import androidx.appcompat.widget.SearchView
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProviders
-import androidx.recyclerview.widget.RecyclerView.*
+import androidx.recyclerview.widget.RecyclerView.OnScrollListener
 import com.soft.pagingdemogithub.R
 import com.soft.pagingdemogithub.di.Injection
 import com.soft.pagingdemogithub.model.GithubDTO
@@ -41,25 +39,21 @@ class MainActivity : AppCompatActivity() {
         val query = savedInstanceState?.getString(LAST_SEARCH_QUERY) ?: DEFAULT_QUERY
         viewModel.searchGithub(query)
 
-        if (Intent.ACTION_SEARCH == intent.action) {
-            intent.getStringExtra(query).also { query -> initSearch(query) }
-        }
-
     }
 
     override fun onCreateOptionsMenu(menu: Menu): Boolean {
         menuInflater.inflate(R.menu.search_menu, menu)
 
-        searchView = findViewById(R.id.search)
+        val searchItem = menu.findItem(R.id.search)
+        searchView = searchItem.actionView as SearchView
+        searchView.isSubmitButtonEnabled
         searchView.setOnQueryTextListener(object : SearchView.OnQueryTextListener {
             override fun onQueryTextSubmit(query: String?): Boolean {
-                searchView.setOnKeyListener { _, keyCode, event ->
-                    if (keyCode == KeyEvent.KEYCODE_ENTER && event.action == KeyEvent.ACTION_DOWN) {
-                        updateFromInput()
-                        true
-                    } else {
-                        false
-                    }
+                if (query?.isNotEmpty()!!){
+                    recyclerView.scrollToPosition(0)
+                    viewModel.searchGithub(query)
+                    adapter.submitList(null)
+                    Log.d("Query", "${query}")
                 }
                 return true
             }
@@ -68,54 +62,12 @@ class MainActivity : AppCompatActivity() {
                 return false
             }
         })
-
         return true
     }
 
     override fun onSaveInstanceState(outState: Bundle) {
         super.onSaveInstanceState(outState)
         outState.putString(LAST_SEARCH_QUERY, viewModel.lastQueryValue())
-    }
-
-    private fun initSearch(query: String) {
-
-        searchView = findViewById(R.id.search)
-
-        if (searchView.imeOptions == EditorInfo.IME_ACTION_GO) {
-            updateFromInput()
-        }
-
-        searchView.setOnKeyListener { _, keyCode, event ->
-            if (keyCode == KeyEvent.KEYCODE_ENTER && event.action == KeyEvent.ACTION_DOWN) {
-                updateFromInput()
-                true
-            } else {
-                false
-            }
-        }
-
-        searchView.setQuery(query, true)
-        searchView.clearFocus()
-
-        /*search_git.setText(query)
-        search_git.setOnEditorActionListener { _, actionId, _ ->
-            if (actionId == EditorInfo.IME_ACTION_GO) {
-                updateFromInput()
-                true
-            } else {
-                false
-            }
-        }
-
-        search_git.setOnKeyListener { _, keyCode, event ->
-            if (event.action == KeyEvent.ACTION_DOWN && keyCode == KeyEvent.KEYCODE_ENTER) {
-                updateFromInput()
-                true
-            } else {
-                false
-            }
-        }*/
-
     }
 
     private fun initAdapter() {
@@ -138,21 +90,6 @@ class MainActivity : AppCompatActivity() {
             emptyList.visibility = View.GONE
             recyclerView.visibility = View.VISIBLE
         }
-    }
-
-    private fun updateFromInput() {
-
-        var query = ""
-        query.trim().let {
-            if (it.isNotEmpty()) {
-                recyclerView.scrollToPosition(0)
-                viewModel.searchGithub(it.toString())
-                adapter.submitList(null)
-            }
-        }
-        searchView.setQuery(query, true)
-        searchView.clearFocus()
-
     }
 
     private fun setupScrollListener() {
