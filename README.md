@@ -1,10 +1,10 @@
-<p align="center">
-# Github-Repository
-<img align="left" width="150" height="300" src=https://github.com/ThantZinAung26/Github-Repository/blob/master/screenshot/device-2019-07-08-220813.png>
-<img align="left" width="150" height="300" src=https://github.com/ThantZinAung26/Github-Repository/blob/master/screenshot/device-2019-07-08-221013.png>
-<img align="left" width="150" height="300" src=https://github.com/ThantZinAung26/Github-Repository/blob/master/screenshot/device-2019-07-08-221042.png>
-<img align="left" width="150" height="300"src=https://github.com/ThantZinAung26/Github-Repository/blob/master/screenshot/device-2019-07-08-221205.png>
-</p>
+<div align="center">
+  <h1>Github-Repository</h1>
+  <img align="left" width="150" height="300" src=https://github.com/ThantZinAung26/Github-Repository/blob/master/screenshot/device-2019-07-08-220813.png>
+  <img align="left" width="150" height="300" src=https://github.com/ThantZinAung26/Github-Repository/blob/master/screenshot/device-2019-07-08-221013.png>
+  <img align="left" width="150" height="300" src=https://github.com/ThantZinAung26/Github-Repository/blob/master/screenshot/device-2019-07-08-221042.png>
+  <img align="left" width="150" height="300"src=https://github.com/ThantZinAung26/Github-Repository/blob/master/screenshot/device-2019-07-08-221205.png>
+</div>
 <h2>Implementing the app</h2>
 <h2>Use Github api</h2>
 <h2>Kotlin</h2>
